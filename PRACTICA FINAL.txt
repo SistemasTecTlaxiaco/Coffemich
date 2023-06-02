@@ -21,26 +21,26 @@ namespace basedatos
         static string conexion = "SERVER=127.0.0.1;PORT=33065;DATABASE=tectlaxiaco;UID=root;PASSWORD=;";
         MySqlConnection cn   = new MySqlConnection(conexion);
 
-        private void label1_Click(object sender, EventArgs e)
+         private void label1_Click(object sender, EventArgs e)
         {
 
-            cn.Open();
-            string modificar = "UPDATE alumno SET NoControl=@nocontrol,Nombre=@nombre,Apellido_Paterno=@apellido_paterno,Apellido_Materno=@apellido_materno,Correo_electronico=@correo_electronico,Semestre=@semestre where NoControl=@nocontrol";
-            MySqlCommand cmd= new MySqlCommand(modificar,cn);
-            cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
-            cmd.Parameters.AddWithValue("@nombre", text_nombre.Text);
-            cmd.Parameters.AddWithValue("@apellido_paterno", text_apaterno.Text);
-            cmd.Parameters.AddWithValue("@apellido_materno", text_amaterno.Text);
-            cmd.Parameters.AddWithValue("@semestre", text_semestre.Text);
-            cmd.Parameters.AddWithValue("@correo_electronico", text_correo.Text);
-            
-            
-           
-            cmd.ExecuteNonQuery();
-
-            cn.Close();
-            MessageBox.Show("Datos Modificados con exito");
-            dataGridView1.DataSource = llenar_grid();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cn.Open();
+            string insertar = "INSERT INTO alumno(NoControl,Nombre,Apellido_Paterno,Apellido_Materno,Semestre,Correo_electronico)values(@NoControl,@Nombre,@Apellido_Paterno,@Apellido_Materno,@Semestre,@Correo_electronico)";
+            MySqlCommand cmd = new MySqlCommand(insertar,cn);
+            cmd.Parameters.AddWithValue("@NoControl",text_nocontrol.Text);
+            cmd.Parameters.AddWithValue("@Nombre", text_nombre.Text);
+            cmd.Parameters.AddWithValue("@Apellido_Paterno", text_apaterno.Text);
+            cmd.Parameters.AddWithValue("@Apellido_Materno", text_amaterno.Text);
+            cmd.Parameters.AddWithValue("@Semestre", text_semestre.Text);
+            cmd.Parameters.AddWithValue("@Correo_electronico", text_correo.Text);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+
+            MessageBox.Show("Los datos fueron agregados correctamente");
+            dataGridView1.DataSource = llenar_grid(); 
+        }
        
