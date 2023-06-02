@@ -76,7 +76,7 @@ private void btn_modificar_Click(object sender, EventArgs e)
             cmd.ExecuteNonQuery();
 
             cn.Close();
-            
+             MessageBox.Show("Datos Modificados con exito");
             dataGridView1.DataSource = llenar_grid();
         }
 
@@ -97,5 +97,41 @@ private void btn_modificar_Click(object sender, EventArgs e)
             catch
             {
 
+ }
+  
    }
-   }
+           private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            cn.Open();
+            string eliminar = "DELETE FROM  alumno WHERE NoControl=@nocontrol";
+            MySqlCommand cmd = new MySqlCommand(eliminar,cn);
+            cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            MessageBox.Show("Los datos fueron eliminados con exito");
+            dataGridView1.DataSource = llenar_grid();
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            text_nocontrol.Clear();
+            text_nombre.Clear();
+            text_apaterno.Clear();
+            text_amaterno.Clear();
+            text_semestre.Clear();
+            text_correo.Clear();
+            
+            
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_correo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
