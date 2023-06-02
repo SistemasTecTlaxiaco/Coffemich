@@ -43,4 +43,21 @@ namespace basedatos
             MessageBox.Show("Los datos fueron agregados correctamente");
             dataGridView1.DataSource = llenar_grid(); 
         }
+        void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                text_nocontrol.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                text_nombre.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                text_apaterno.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                text_amaterno.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                text_correo.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                
+               
+            }
+            
+            {
+
+            }
+        }
        
