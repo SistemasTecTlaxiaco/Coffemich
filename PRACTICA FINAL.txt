@@ -43,6 +43,21 @@ namespace basedatos
             MessageBox.Show("Los datos fueron agregados correctamente");
             dataGridView1.DataSource = llenar_grid(); 
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+         }
+        public DataTable llenar_grid(){
+            cn.Open();
+            DataTable dt = new DataTable();
+            String llenar = "select*from alumno";
+            MySqlCommand cmd = new MySqlCommand(llenar,cn);
+            MySqlDataAdapter da=new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            cn.Close();
+            return dt;
+
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
