@@ -45,6 +45,7 @@ namespace basedatos
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+        dataGridView1.DataSource = llenar_grid();
          }
         public DataTable llenar_grid(){
             cn.Open();
