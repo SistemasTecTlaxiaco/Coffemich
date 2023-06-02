@@ -24,4 +24,23 @@ namespace basedatos
         private void label1_Click(object sender, EventArgs e)
         {
 
+            cn.Open();
+            string modificar = "UPDATE alumno SET NoControl=@nocontrol,Nombre=@nombre,Apellido_Paterno=@apellido_paterno,Apellido_Materno=@apellido_materno,Correo_electronico=@correo_electronico,Semestre=@semestre where NoControl=@nocontrol";
+            MySqlCommand cmd= new MySqlCommand(modificar,cn);
+            cmd.Parameters.AddWithValue("@nocontrol", text_nocontrol.Text);
+            cmd.Parameters.AddWithValue("@nombre", text_nombre.Text);
+            cmd.Parameters.AddWithValue("@apellido_paterno", text_apaterno.Text);
+            cmd.Parameters.AddWithValue("@apellido_materno", text_amaterno.Text);
+            cmd.Parameters.AddWithValue("@semestre", text_semestre.Text);
+            cmd.Parameters.AddWithValue("@correo_electronico", text_correo.Text);
+            
+            
+           
+            cmd.ExecuteNonQuery();
+
+            cn.Close();
+            MessageBox.Show("Datos Modificados con exito");
+            dataGridView1.DataSource = llenar_grid();
+        }
+
        
